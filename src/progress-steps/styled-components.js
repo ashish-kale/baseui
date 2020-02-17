@@ -13,7 +13,7 @@ import type {StylePropsT} from './types.js';
 export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
   return {
     backgroundColor: $theme.colors.listHeaderFill,
-    display: 'flex',
+    display: 'inline-block',
     marginBottom: 0,
     marginTop: 0,
     paddingTop: $theme.sizing.scale300,
@@ -28,8 +28,6 @@ export const StyledStep = styled<StylePropsT>('li', ({$theme}) => {
     listStyleType: 'none',
     position: 'relative',
     overflow: 'visible',
-    display: 'flex',
-    flexDirection: 'column',
   };
 });
 
@@ -98,8 +96,8 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
 
 export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
   return {
-    [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-      .scale1200,
+    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+      .scale900,
   };
 });
 
@@ -123,7 +121,7 @@ export const StyledContentTitle = styled<StylePropsT>(
 
 export const StyledContentTail = styled<StylePropsT>(
   'div',
-  ({$theme, $isCompleted, $isActive, $isSecondLast}) => {
+  ({$theme, $isCompleted, $isActive}) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
     let font = $theme.typography.font300;
@@ -142,11 +140,11 @@ export const StyledContentTail = styled<StylePropsT>(
       position: 'absolute',
       [$theme.direction === 'rtl' ? 'right' : 'left']: '7px',
       top: 0,
-      height: `2px`,
+      height: `calc(100% + ${$theme.sizing.scale500})`,
       marginBottom: 0,
-      width: $isSecondLast && $isActive ? 'calc(100% - 10px)' : '100%',
-      marginTop: `10px`,
-      marginLeft: $isActive ? `10px` : '0px',
+      width: $theme.sizing.scale0,
+      marginTop: `calc(${size} + (${font.lineHeight} - ${size}) / 2)`,
+      display: 'inline-block',
       backgroundColor: currentColor,
     };
   },
@@ -166,8 +164,6 @@ export const StyledNumberStep = styled<StylePropsT>('li', ({$theme}) => {
     listStyleType: 'none',
     position: 'relative',
     overflow: 'visible',
-    display: 'flex',
-    flexDirection: 'column',
   };
 });
 
@@ -190,7 +186,7 @@ export const StyledNumberIcon = styled<StylePropsT>(
       backgroundColor = $theme.colors.progressStepsActiveFill;
     }
 
-    const marginTop = `calc((${titleFont.lineHeight} - ${size}) / 4)`;
+    const marginTop = `calc((${titleFont.lineHeight} - ${size}) / 2)`;
 
     return {
       marginRight,
