@@ -26,6 +26,7 @@ function Step({
   isCompleted,
   isActive,
   isLast,
+  isSecondLast,
   title,
   children,
 }: StepPropsT) {
@@ -49,6 +50,7 @@ function Step({
   const sharedProps = {
     $isCompleted: isCompleted,
     $isActive: isActive,
+    $isSecondLast: isSecondLast,
   };
 
   return (
@@ -71,6 +73,7 @@ Step.defaultProps = {
   isCompleted: false,
   isActive: false,
   isLast: false,
+  isSecondLast: false,
 };
 
 export default Step;

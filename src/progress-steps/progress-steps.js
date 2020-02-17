@@ -27,6 +27,7 @@ function ProgressSteps({
       child,
       ({
         isLast: index === numChildren - 1,
+        isSecondLast: index === numChildren - 2,
         isCompleted: index < current,
         isActive: index === current,
         step: index + 1,

@@ -47,6 +47,8 @@ export type StepPropsT = {
   isActive: boolean,
   /** Defines if the step is the last item displayed. */
   isLast: boolean,
+  /** Defines if the step is the second last item displayed. */
+  isSecondLast: boolean,
   overrides?: StepOverridesT,
   children?: Node,
 };
