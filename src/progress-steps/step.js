@@ -18,6 +18,15 @@ import {
   StyledContentTail,
   StyledContentDescription,
 } from './styled-components.js';
+import {
+  StyledStep as StyledStepHorizontal,
+  StyledIcon as StyledIconHorizontal,
+  StyledInnerIcon as StyledInnerIconHorizontal,
+  StyledContent as StyledContentHorizontal,
+  StyledContentTitle as StyledContentTitleHorizontal,
+  StyledContentTail as StyledContentTailHorizontal,
+  StyledContentDescription as StyledContentDescriptionHorizontal,
+} from './styled-components-horizontal.js';
 
 import type {StepPropsT} from './types.js';
 
@@ -30,21 +39,36 @@ function Step({
   title,
   children,
 }: StepPropsT) {
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledStep);
-  const [Icon, iconProps] = getOverrides(overrides.Icon, StyledIcon);
+  const alignVertical = false;
+  const [Root, rootProps] = getOverrides(
+    overrides.Root,
+    alignVertical ? StyledStep : StyledStepHorizontal,
+  );
+  const [Icon, iconProps] = getOverrides(
+    overrides.Icon,
+    alignVertical ? StyledIcon : StyledIconHorizontal,
+  );
   const [InnerIcon, innerIconProps] = getOverrides(
     overrides.InnerIcon,
-    StyledInnerIcon,
+    alignVertical ? StyledInnerIcon : StyledInnerIconHorizontal,
   );
-  const [Tail, tailProps] = getOverrides(overrides.Tail, StyledContentTail);
+  const [Tail, tailProps] = getOverrides(
+    overrides.Tail,
+    alignVertical ? StyledContentTail : StyledContentTailHorizontal,
+  );
   const [Content, contentProps] = getOverrides(
     overrides.Content,
-    StyledContent,
+    alignVertical ? StyledContent : StyledContentHorizontal,
   );
-  const [Title, titleProps] = getOverrides(overrides.Title, StyledContentTitle);
+  const [Title, titleProps] = getOverrides(
+    overrides.Title,
+    alignVertical ? StyledContentTitle : StyledContentTitleHorizontal,
+  );
   const [Description, descriptionProps] = getOverrides(
     overrides.Description,
-    StyledContentDescription,
+    alignVertical
+      ? StyledContentDescription
+      : StyledContentDescriptionHorizontal,
   );
 
   const sharedProps = {

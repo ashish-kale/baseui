@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {StyledProgressSteps} from './styled-components.js';
+import {StyledProgressSteps as StyledProgressStepsHorizontal} from './styled-components-horizontal.js';
 import type {ProgressStepsPropsT, StepPropsT} from './types.js';
 
 function ProgressSteps({
@@ -17,7 +18,11 @@ function ProgressSteps({
   current,
   children,
 }: ProgressStepsPropsT) {
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledProgressSteps);
+  const alignVertical = false;
+  const [Root, rootProps] = getOverrides(
+    overrides.Root,
+    alignVertical ? StyledProgressSteps : StyledProgressStepsHorizontal,
+  );
   const numChildren = React.Children.count(children);
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (!child) return;

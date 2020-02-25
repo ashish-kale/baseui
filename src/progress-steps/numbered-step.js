@@ -17,6 +17,14 @@ import {
   StyledNumberContentTail,
   StyledContentDescription,
 } from './styled-components.js';
+import {
+  StyledNumberStep as StyledNumberStepHorizontal,
+  StyledNumberIcon as StyledNumberIconHorizontal,
+  StyledContent as StyledContentHorizontal,
+  StyledContentTitle as StyledContentTitleHorizontal,
+  StyledNumberContentTail as StyledNumberContentTailHorizontal,
+  StyledContentDescription as StyledContentDescriptionHorizontal,
+} from './styled-components-horizontal.js';
 import StyledCheckIcon from '../icon/check.js';
 
 import type {NumberedStepPropsT} from './types.js';
@@ -26,24 +34,37 @@ function NumberedStep({
   isCompleted,
   isActive,
   isLast,
+  isSecondLast,
   title,
   step,
   children,
 }: NumberedStepPropsT) {
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledNumberStep);
-  const [Icon, iconProps] = getOverrides(overrides.Icon, StyledNumberIcon);
+  const alignVertical = false;
+  const [Root, rootProps] = getOverrides(
+    overrides.Root,
+    alignVertical ? StyledNumberStep : StyledNumberStepHorizontal,
+  );
+  const [Icon, iconProps] = getOverrides(
+    overrides.Icon,
+    alignVertical ? StyledNumberIcon : StyledNumberIconHorizontal,
+  );
   const [Tail, tailProps] = getOverrides(
     overrides.Tail,
-    StyledNumberContentTail,
+    alignVertical ? StyledNumberContentTail : StyledNumberContentTailHorizontal,
   );
   const [Content, contentProps] = getOverrides(
     overrides.Content,
-    StyledContent,
+    alignVertical ? StyledContent : StyledContentHorizontal,
   );
-  const [Title, titleProps] = getOverrides(overrides.Title, StyledContentTitle);
+  const [Title, titleProps] = getOverrides(
+    overrides.Title,
+    alignVertical ? StyledContentTitle : StyledContentTitleHorizontal,
+  );
   const [Description, descriptionProps] = getOverrides(
     overrides.Description,
-    StyledContentDescription,
+    alignVertical
+      ? StyledContentDescription
+      : StyledContentDescriptionHorizontal,
   );
   const [CheckIcon, checkIconProps] = getOverrides(
     overrides.Icon,
@@ -53,6 +74,7 @@ function NumberedStep({
   const sharedProps = {
     $isCompleted: isCompleted,
     $isActive: isActive,
+    $isSecondLast: isSecondLast,
   };
 
   return (
@@ -76,6 +98,7 @@ NumberedStep.defaultProps = {
   isCompleted: false,
   isActive: false,
   isLast: false,
+  isSecondLast: false,
 };
 
 export default NumberedStep;

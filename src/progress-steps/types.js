@@ -72,6 +72,8 @@ export type NumberedStepPropsT = {
   isActive: boolean,
   /** Defines if the step is the last item displayed. */
   isLast: boolean,
+  /** Defines if the step is the second last item displayed. */
+  isSecondLast: boolean,
   overrides?: NumberedStepOverridesT,
   children?: Node,
   /** The number displayed as the step number */
